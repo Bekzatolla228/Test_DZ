@@ -1,0 +1,23 @@
+{% extends 'Shop_app/base.html' %}
+
+{% block title %}
+Bekzatolla
+{% endblock %}
+
+{% block header %}
+<h1 class="display-4 fw-bolder"><a style="text-decoration: none; color: white;" href="{% url 'secret' %}">Bekzatolla</a></h1>
+<p class="lead fw-normal text-white-50 mb-0">My personal page</p>
+{% endblock %}
+
+{% block content %}
+<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+    {% for x in products %}
+    <div class="col mb-5">
+        <div class="card h-100">
+            <!-- Product image-->
+            <img class="card-img-top" src="{{ x.image.url }}" alt="...">
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

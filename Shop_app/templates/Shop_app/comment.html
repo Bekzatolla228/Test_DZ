@@ -1,0 +1,45 @@
+{% extends 'Shop_app/base.html' %}
+{% load static %}
+
+{% block title %}
+Comments
+{% endblock %}
+
+{% block header %}
+<h1 class="display-4 fw-bolder">Comments</h1>
+<p class="lead fw-normal text-white-50 mb-0">Talk about ...</p>
+{% endblock %}
+
+{% block content %}
+    <div class="create">
+        <a href="{% url 'create' %}" class="btn btn-dark">Upload</a>
+    </div>
+    {% for x in comments %}
+        <div class="d-flex justify-content-between comment_bk">
+            <div class="d-flex" style="padding-right: 20px;">
+                {% if x.picture != "Default value" %}
+                    <img class="rounded-circle shadow-1-strong me-3" src="{{ x.picture.url }}" alt="avatar" width="80" height="80">
+                {% else %}
+                    <img class="rounded-circle shadow-1-strong me-3" src="{% static 'Shop_app/img/All_Might_hero_half_body.jpg' %}" alt="avatar" width="65" height="65">
+                {% endif %}
+                <div class="flex-shrink-1">
+                    <div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="mb-1">{{ x.title }}</h5>
+                        </div>
+                        <p align="justify" class="small mb-0">
+                            {{ x.comment }}
+                        </p><br>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h6 class="mb-1">{{ x.author }}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <a href="update/{{ x.id }}" class="btn btn-dark" id="{{ x.id }}">Edit</a><br>
+                <a href="delete/{{ x.id }}" class="btn btn-dark" id="{{ x.id }}">Delete</a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

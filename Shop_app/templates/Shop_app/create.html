@@ -1,0 +1,29 @@
+{% extends 'Shop_app/base.html' %}
+
+{% block title %}
+Create
+{% endblock %}
+
+{% block header %}
+<h1 class="display-4 fw-bolder">{{ title }}</h1>
+<p class="lead fw-normal text-white-50 mb-0">{{ title }} your post.</p>
+{% endblock %}
+
+{% block content %}
+    <div class="d-flex justify-content-center">
+        <div style="width: 500px;">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <table class="table table-dark">
+                    {% for x in create %}
+                        <tr>
+                            <th scope="row">{{ x.label }}</th>
+                            <td>{{ x }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                <button type="submit" class="btn btn-dark">Submit</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
